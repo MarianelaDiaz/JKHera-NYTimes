@@ -7,7 +7,7 @@ interface NYTimesAPIToArticleDataResolver {
     fun getArticleFromExternalData(serviceData: String?): CardImpl?
 }
 
-internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
+internal class JsonToArticleDataResolver : NYTimesAPIToArticleDataResolver {
     override fun getArticleFromExternalData(serviceData: String?): CardImpl? =
         try {
             serviceData?.getResponse()?.let { item ->

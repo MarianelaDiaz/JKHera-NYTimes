@@ -9,7 +9,7 @@ interface NYTimesArticleService {
 internal class NYTimesArticleServiceImpl(
     private val nyTimesApi: NYTimesAPIController,
     private val nyTimesApiToArticleDataResolver: NYTimesAPIToArticleDataResolver
-): NYTimesArticleService {
+) : NYTimesArticleService {
 
     override fun getArticle(artist: String): CardImpl? {
         val callResponse = getArticleFromService(artist)
