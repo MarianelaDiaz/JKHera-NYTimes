@@ -1,9 +1,21 @@
+buildscript {
+    ext.kotlin_version = '1.4.32'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
 plugins {
     id 'java'
 }
+apply plugin: 'kotlin'
 
-group 'org.example'
+group 'ayds'
 version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -20,7 +32,14 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.xerial:sqlite-jdbc:3.21.0'
 }
-
-test {
-    useJUnitPlatform()
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        languageVersion = "1.4"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
