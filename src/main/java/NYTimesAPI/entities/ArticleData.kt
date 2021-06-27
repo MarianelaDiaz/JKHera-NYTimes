@@ -1,7 +1,6 @@
 package NYTimesAPI
 
-//TODO: Eliminar artistName y isLocallyStored
-interface Card {
+interface ArticleData {
     val artistName: String
     val description: String
     val source: Int
@@ -10,16 +9,16 @@ interface Card {
     val sourceLogoURL: String
 }
 
-data class CardImpl(
+data class NYTArticleData(
     override val artistName: String = "",
     override val description: String,
     override val source: Int = 1,
     override val articleURL: String,
     override val isLocallyStored: Boolean = false,
     override val sourceLogoURL: String = ""
-): Card
+): ArticleData
 
-object EmptyCard: Card {
+object EmptyCard: ArticleData {
     override val artistName: String = ""
     override val description: String = ""
     override val source: Int = 1

@@ -3,15 +3,15 @@ package NYTimesAPI
 import retrofit2.Response
 
 interface NYTimesArticleService {
-    fun getArticle(artist: String): CardImpl?
+    fun getArticle(artist: String): NYTArticleData?
 }
 
 internal class NYTimesArticleServiceImpl(
     private val nyTimesApi: NYTimesAPIController,
     private val nyTimesApiToArticleDataResolver: NYTimesAPIToArticleDataResolver
-) : NYTimesArticleService {
+): NYTimesArticleService {
 
-    override fun getArticle(artist: String): CardImpl? {
+    override fun getArticle(artist: String): NYTArticleData? {
         val callResponse = getArticleFromService(artist)
         return nyTimesApiToArticleDataResolver.getArticleFromExternalData(callResponse.body())
     }

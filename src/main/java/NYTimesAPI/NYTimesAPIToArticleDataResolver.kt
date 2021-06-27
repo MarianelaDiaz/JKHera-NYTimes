@@ -4,14 +4,14 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 
 interface NYTimesAPIToArticleDataResolver {
-    fun getArticleFromExternalData(serviceData: String?): CardImpl?
+    fun getArticleFromExternalData(serviceData: String?): NYTArticleData?
 }
 
-internal class JsonToArticleDataResolver : NYTimesAPIToArticleDataResolver {
-    override fun getArticleFromExternalData(serviceData: String?): CardImpl? =
+internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
+    override fun getArticleFromExternalData(serviceData: String?): NYTArticleData? =
         try {
             serviceData?.getResponse()?.let { item ->
-                CardImpl(
+                NYTArticleData(
                     description = item.getInfo(),
                     articleURL = item.getArticleURL()
                 )
