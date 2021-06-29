@@ -1,7 +1,6 @@
 package NYTimesAPI
 
 interface ArticleData {
-    val artistName: String
     val description: String
     val source: Int
     val articleURL: String
@@ -10,7 +9,6 @@ interface ArticleData {
 }
 
 data class NYTArticleData(
-    override val artistName: String = "",
     override val description: String,
     override val source: Int = 1,
     override val articleURL: String,
@@ -19,7 +17,6 @@ data class NYTArticleData(
 ): ArticleData
 
 object EmptyCard: ArticleData {
-    override val artistName: String = ""
     override val description: String = ""
     override val source: Int = 1
     override val articleURL: String = ""
