@@ -1,5 +1,6 @@
 package NYTimesAPI
 
+import NYTimesAPI.exceptions.APIException
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 
@@ -28,11 +29,22 @@ internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
 }
 
 private fun JsonObject.getArticleURL(): String {
+    this.checkDocs()
     var url = this["docs"].asJsonArray[0].asJsonObject["web_url"].toString()
     url = url.substring(1, url.length - 1)
     return url
 }
 
 private fun JsonObject.getInfo(): String {
+    this.checkDocs()
     return this["docs"].asJsonArray[0].asJsonObject["abstract"].toString()
+}
+
+private fun JsonObject.checkDocs() {
+    if (this["docs"].asJsonArray.size() <= 0 ||
+        this["docs"].asJsonArray[0].asJsonObject["web_url"] == null ||
+        this["docs"].asJsonArray[0].asJsonObject["abstract"] == null
+    ) {
+        throw APIException("Error de API")
+    }
 }
