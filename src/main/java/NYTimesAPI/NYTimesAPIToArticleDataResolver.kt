@@ -14,7 +14,8 @@ internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
             serviceData?.getResponse()?.let { item ->
                 NYTArticleData(
                     description = item.getInfo(),
-                    articleURL = item.getArticleURL()
+                    articleURL = item.getArticleURL(),
+                    sourceLogoURL = API_SOURCE_URL
                 )
             }
         } catch (e: Exception) {
@@ -25,6 +26,12 @@ internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
         val jsonObject = Gson().fromJson(this, JsonObject::class.java)
         val response = jsonObject["response"].asJsonObject
         return response
+    }
+
+
+    companion object {
+        const val API_SOURCE_URL =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVioI832nuYIXqzySD8cOXRZEcdlAj3KfxA62UEC4FhrHVe0f7oZXp3_mSFG7nIcUKhg&usqp=CAU"
     }
 }
 
@@ -47,4 +54,6 @@ private fun JsonObject.checkDocs() {
     ) {
         throw APIException("Error de API")
     }
+
+
 }
