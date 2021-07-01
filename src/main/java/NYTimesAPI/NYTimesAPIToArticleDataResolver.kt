@@ -55,5 +55,4 @@ private fun JsonObject.checkDocs() {
         throw APIException("Error de API")
     }
 
-
 }
