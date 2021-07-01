@@ -18,6 +18,9 @@ internal class JsonToArticleDataResolver: NYTimesAPIToArticleDataResolver {
                     sourceLogoURL = API_SOURCE_URL
                 )
             }
+        } catch (e2: APIException) {
+            println("API ERROR")
+            null
         } catch (e: Exception) {
             null
         }
