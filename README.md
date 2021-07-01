@@ -60,5 +60,4 @@ NYTInfoService.getArticleFromService("Bool and the gang")
  
  ## Exceptions
  
- The checkDocs method may eventually throw an `APIException` if the API response is empty. This may happen because no article was found containing the artist's name.
- 
+   getArticle method in NYTimesArticleService interface can throw an `APIException` if the API response is corrupted (service couldn't retrieve certains article attributes). The HTTP response body format is on NYTimes API responsability. Either way, the normal user shouldn't worry about this because this API error is catched and fixed in the submodule via the custom APIException, which prints a console message showing that an API Error has ocurred. In the end, the submodule works perfectly fine from a client-side view.
